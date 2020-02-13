@@ -8,6 +8,7 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
     <UserSecretsId>8fc44e26-0ee8-4316-af44-375e19cbbcf7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <ApplicationInsightsResourceId>/subscriptions/f646c48e-d7e2-49ce-8b99-d73bceec66a4/resourcegroups/PSD-Development/providers/microsoft.insights/components/PositivoCore</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     
@@ -16,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -31,7 +33,11 @@
     <ProjectReference Include="..\PositivoCore.Application\PositivoCore.Application.csproj" />
     <ProjectReference Include="..\PositivoCore.Data\PositivoCore.Data.csproj" />
     <ProjectReference Include="..\PositivoCore.Domain\PositivoCore.Domain.csproj" />
-    <ProjectReference Include="..\PositivoCore.Shared\PositivoCore.Shared.csproj" />
+    <ProjectReference Include="..\PositivoCore.Shared\PositivoCore.Shared.csproj" /> 
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 

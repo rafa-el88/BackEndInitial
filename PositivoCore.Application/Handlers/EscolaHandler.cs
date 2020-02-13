@@ -119,7 +119,7 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var escola = await Task.Run(() => _repository.Find(command.Id));
+            var escola = await _repository.Find(command.Id);
 
             if (escola == null)
                 AddNotification("Escola", "Não foi encontrado escola vinculada a este id.");
@@ -147,7 +147,7 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var escola = await Task.Run(() => _repository.Find(command.Id));
+            var escola = await _repository.Find(command.Id);
 
             if (escola == null)
                 AddNotification("Escola", "Não foi possível encontrar a escola vinculada a este id.");

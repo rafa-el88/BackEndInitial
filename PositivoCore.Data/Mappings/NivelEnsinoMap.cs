@@ -31,6 +31,10 @@ namespace PositivoCore.Data.Mappings
             builder
                 .HasMany(x => x.Series)
                 .WithOne(z => z.NivelEnsino);
+
+            builder
+                .HasMany(x => x.PeriodoLetivoConfiguracoes)
+                .WithOne(z => z.NivelEnsino);
         }
     }
 }

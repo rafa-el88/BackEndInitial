@@ -37,9 +37,9 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var aluno = new Aluno(command.Nome);
+            var aluno = _mapper.Map<Aluno>(command);
 
-            await Task.Run(() => _repository.Insert(aluno));
+            _repository.Insert(aluno);
 
             return new CommandResult(true, "Aluno criado com sucesso.", _mapper.Map<AlunoViewModel>(aluno));
         }
@@ -48,7 +48,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var aluno = await Task.Run(() => _repository.Find(command.Id));
+            var aluno = await _repository.Find(command.Id);
 
             if (aluno == null)
                 AddNotification("Aluno", "Não foi possível encontrar o aluno vinculado a este id.");
@@ -64,7 +64,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var aluno = await Task.Run(() => _repository.Find(command.Id)); 
+            var aluno = await _repository.Find(command.Id); 
 
             if (aluno == null)
                 AddNotification("Aluno", "Não foi possível encontrar o aluno vinculado a este id.");
@@ -72,7 +72,7 @@ namespace PositivoCore.Application.Handler
             if (Invalid)
                 return new CommandResult(false, "Ops...", Notifications);
 
-            aluno.UpdateNome(command.Nome);
+            aluno.UpdateFields(_mapper.Map<Aluno>(command));
 
             _repository.Update(aluno);
 
@@ -92,7 +92,7 @@ namespace PositivoCore.Application.Handler
             foreach (var item in command.Alunos)
             {
                 //Define as Entidades
-                var aluno = new Aluno(item.Nome);
+                var aluno = _mapper.Map<Aluno>(item);
 
                 //Adiciona as Notificações dos Validates
                 AddNotifications(aluno.Notifications);
@@ -108,7 +108,7 @@ namespace PositivoCore.Application.Handler
                 return new CommandResult(false, $"Econtramos {lst.Count} alunos com dados inválidos, realizar a operação novamente!.", events);
 
             // Persiste no banco
-            lst = await Task.Run(() => _repository.InsertList(lst));
+            lst = _repository.InsertList(lst);
 
             return new CommandResult(true, $"Criado {lst.Count} alunos com sucesso.", lst);
         }
@@ -125,8 +125,9 @@ namespace PositivoCore.Application.Handler
 
             foreach (var item in command.Alunos)
             {
-                var aluno = _repository.Find(item.Id);
-                aluno.UpdateNome(item.Nome);
+                var aluno = await _repository.Find(item.Id);
+
+                aluno.UpdateFields(_mapper.Map<Aluno>(item));
 
                 //Adiciona as Notificações dos Validates
                 AddNotifications(aluno.Notifications);
@@ -142,7 +143,7 @@ namespace PositivoCore.Application.Handler
                 return new CommandResult(false, $"Econtramos {lst.Count} alunos com dados inválidos, realizar a operação novamente!.", events);
 
             // Persiste no banco
-            lst = await Task.Run(() => _repository.UpdateList(lst));
+            lst = _repository.UpdateList(lst);
 
             return new CommandResult(true, $"Alterado {lst.Count} alunos com sucesso.", lst);
         }
@@ -159,7 +160,7 @@ namespace PositivoCore.Application.Handler
 
             foreach (var item in command.Id)
             {
-                var aluno = await Task.Run(() => _repository.Find(item)); 
+                var aluno = await _repository.Find(item); 
 
                 if (aluno == null)
                     AddNotification("Aluno", "Não foi possível encontrar o aluno vinculado a este id.");

@@ -26,5 +26,8 @@ namespace PositivoCore.Domain.Entities
             Nome = nome;
         }
         public virtual List<Serie> Series { get; set; }
+        public virtual List<PeriodoLetivoConfiguracao> PeriodoLetivoConfiguracoes { get; set; }
+
+
     }
 }

@@ -12,7 +12,6 @@ namespace PositivoCore.Application.Commands
             Id = id;
             Nome = nome;
         }
-
         public UpdateDisiplinaCommand() { }
 
         public string Nome { get; set; }

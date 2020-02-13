@@ -30,7 +30,7 @@ namespace PositivoCore.Application.Handler
 
             var disciplina = new Disciplina(command.Nome);
 
-            await Task.Run(() => _repository.Insert(disciplina));
+            _repository.Insert(disciplina);
 
             return new CommandResult(true, "Disciplina criada com sucesso.", _mapper.Map<DisciplinaViewModel>(disciplina));
         }
@@ -39,7 +39,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var disciplina = await Task.Run(() => _repository.Find(command.Id));
+            var disciplina = await _repository.Find(command.Id);
 
             if (disciplina == null)
                 AddNotification("Disciplina", "Não foi possível encontrar a disciplina vinculada a este id.");
@@ -55,7 +55,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var disciplina = await Task.Run(() => _repository.Find(command.Id));
+            var disciplina = await _repository.Find(command.Id);
 
             if (disciplina == null)
                 AddNotification("Disciplina", "Não foi possível encontrar a disciplina vinculada a este id.");

@@ -32,7 +32,7 @@ namespace PositivoCore.Application.Handler
 
             var turma = new Turma(command.Nome, command.IdEscola, command.IdSerie);
 
-            await Task.Run(() => _repository.Insert(turma));
+            _repository.Insert(turma);
 
             return new CommandResult(true, "Turma inserida com sucesso.", _mapper.Map<TurmaViewModel>(turma));
         }
@@ -41,7 +41,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var turma = await Task.Run(() => _repository.Find(command.Id));
+            var turma = await _repository.Find(command.Id);
 
             if (turma == null)
                 AddNotification("Serie", "Não foi possível encontrar o Nível de ensino vinculado a este id.");
@@ -58,7 +58,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var turma = await Task.Run(() => _repository.Find(command.Id));
+            var turma = await _repository.Find(command.Id);
 
             if (turma == null)
                 AddNotification("serie", "Não foi encontrado uma turma vinculada a este id.");
@@ -82,7 +82,7 @@ namespace PositivoCore.Application.Handler
                 lst.Add(tdp);
             }
 
-            lst = await Task.Run(() => _repositoryTurmaDisciplinaProfessor.InsertList(lst));
+            lst = _repositoryTurmaDisciplinaProfessor.InsertList(lst);
 
             return new CommandResult(true, "Vinculo turma/disciplina/professor criados com sucesso.", lst);
         }

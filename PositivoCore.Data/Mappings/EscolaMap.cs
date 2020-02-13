@@ -25,6 +25,29 @@ namespace PositivoCore.Data.Mappings
                 .HasMaxLength(255)
                 .IsRequired();
 
+            builder.Property(c => c.RazaoSocial)
+                .HasColumnType("nvarchar(255)")
+                .HasMaxLength(255);
+
+            builder.Property(c => c.INEP)
+                .HasColumnType("nvarchar(45)")
+                .HasMaxLength(45);
+
+            builder.Property(c => c.INEPDescricao)
+                .HasColumnType("nvarchar(45)")
+                .HasMaxLength(45);
+
+            builder.Property(c => c.CodSGE)
+                .HasColumnType("nvarchar(45)")
+                .HasMaxLength(45);
+
+            builder.Property(c => c.InscricaoEstadual)
+                .HasColumnType("nvarchar(45)")
+                .HasMaxLength(45);
+
+            builder.Property(c => c.TipoEscola)
+                .HasColumnType("int");
+
             builder.Property(c => c.DataCadastro)
                 .HasColumnType("DateTime")
                 .IsRequired();
@@ -39,6 +62,10 @@ namespace PositivoCore.Data.Mappings
 
             builder
                 .HasMany(x => x.Turmas)
+                .WithOne(z => z.Escola);
+
+            builder
+                .HasMany(x => x.PeriodoLetivoConfiguracoes)
                 .WithOne(z => z.Escola);
         }
     }

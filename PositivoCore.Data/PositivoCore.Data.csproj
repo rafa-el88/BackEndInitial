@@ -9,6 +9,22 @@
     <Compile Remove="Migrations\20200204172008_AlterTableSerie.Designer.cs" />
     <Compile Remove="Migrations\20200205150028_ini.cs" />
     <Compile Remove="Migrations\20200205150028_ini.Designer.cs" />
+    <Compile Remove="Migrations\20200211121958_AlterColumnEmailTableAluno.cs" />
+    <Compile Remove="Migrations\20200211121958_AlterColumnEmailTableAluno.Designer.cs" />
+    <Compile Remove="Migrations\20200211152400_Responsavel-props.cs" />
+    <Compile Remove="Migrations\20200211152400_Responsavel-props.Designer.cs" />
+    <Compile Remove="Migrations\20200211165725_Responsavel-datetime.cs" />
+    <Compile Remove="Migrations\20200211165725_Responsavel-datetime.Designer.cs" />
+    <Compile Remove="Migrations\20200211142236_CreatedTableAdministrador.cs" />
+    <Compile Remove="Migrations\20200211142236_CreatedTableAdministrador.Designer.cs" />
+    <Compile Remove="Migrations\20200212104236_Periodos.cs" />
+    <Compile Remove="Migrations\20200212104236_Periodos.Designer.cs" />
+    <Compile Remove="Migrations\20200212105016_Periodos.cs" />
+    <Compile Remove="Migrations\20200212105016_Periodos.Designer.cs" />
+    <Compile Remove="Migrations\20200212185819_alter-table-responsavel.cs" />
+    <Compile Remove="Migrations\20200212185819_alter-table-responsavel.Designer.cs" />
+    <Compile Remove="Migrations\20200212190426_alterTableResponsavel.cs" />
+    <Compile Remove="Migrations\20200212190426_alterTableResponsavel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

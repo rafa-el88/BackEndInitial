@@ -19,7 +19,93 @@ namespace PositivoCore.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Administrador", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Cpf")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<int?>("Genero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Administrador");
+                });
+
             modelBuilder.Entity("PositivoCore.Domain.Entities.Aluno", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Apelido")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Cpf")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<int?>("Genero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Matricula")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Aluno");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Colecao", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,12 +122,79 @@ namespace PositivoCore.Data.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("Padrao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Aluno");
+                    b.ToTable("Colecao");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.ConvidadosEvento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<Guid>("IdConvidado")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("TipoPerfil")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ConvidadosEvento");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.DestinatarioMensagem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<Guid>("IdDestinatario")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdMensagem")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TipoPerfil")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdMensagem");
+
+                    b.ToTable("DestinatarioMensagem");
                 });
 
             modelBuilder.Entity("PositivoCore.Domain.Entities.Disciplina", b =>
@@ -54,10 +207,10 @@ namespace PositivoCore.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DataAtualizacao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DateTime");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DateTime");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -78,20 +231,80 @@ namespace PositivoCore.Data.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<string>("CodSGE")
+                        .HasColumnType("nvarchar(45)")
+                        .HasMaxLength(45);
+
                     b.Property<DateTime>("DataAtualizacao")
                         .HasColumnType("DateTime");
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("DateTime");
 
+                    b.Property<string>("INEP")
+                        .HasColumnType("nvarchar(45)")
+                        .HasMaxLength(45);
+
+                    b.Property<string>("INEPDescricao")
+                        .HasColumnType("nvarchar(45)")
+                        .HasMaxLength(45);
+
+                    b.Property<string>("InscricaoEstadual")
+                        .HasColumnType("nvarchar(45)")
+                        .HasMaxLength(45);
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<string>("RazaoSocial")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int?>("TipoEscola")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Escola");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Mensagem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Assunto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<Guid?>("IdMensagemVinculada")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("PermiteResposta")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdMensagemVinculada");
+
+                    b.ToTable("Mensagem");
                 });
 
             modelBuilder.Entity("PositivoCore.Domain.Entities.NivelEnsino", b =>
@@ -117,6 +330,107 @@ namespace PositivoCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NivelEnsino");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Periodo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<Guid>("IdPeriodoLetivoTipo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdPeriodoLetivoTipo");
+
+                    b.ToTable("Periodo");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.PeriodoLetivoConfiguracao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AnoLetivo")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DtInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdEscola")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdNivelEnsino")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdPeriodo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdPeriodoLetivoTipo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdEscola");
+
+                    b.HasIndex("IdNivelEnsino");
+
+                    b.HasIndex("IdPeriodo");
+
+                    b.HasIndex("IdPeriodoLetivoTipo");
+
+                    b.ToTable("PeriodoLetivoConfiguracao");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.PeriodoLetivoTipo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PeriodoLetivoTipo");
                 });
 
             modelBuilder.Entity("PositivoCore.Domain.Entities.Professor", b =>
@@ -147,6 +461,42 @@ namespace PositivoCore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Professor");
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Responsavel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(45)")
+                        .HasMaxLength(45);
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("DateTime");
+
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Responsavel");
                 });
 
             modelBuilder.Entity("PositivoCore.Domain.Entities.Serie", b =>
@@ -243,6 +593,15 @@ namespace PositivoCore.Data.Migrations
                     b.ToTable("TurmaDisciplinaProfessor");
                 });
 
+            modelBuilder.Entity("PositivoCore.Domain.Entities.DestinatarioMensagem", b =>
+                {
+                    b.HasOne("PositivoCore.Domain.Entities.Mensagem", "Mensagem")
+                        .WithMany("DestinatarioMensagens")
+                        .HasForeignKey("IdMensagem")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PositivoCore.Domain.Entities.Escola", b =>
                 {
                     b.OwnsOne("PositivoCore.Domain.ValueObjects.CNPJ", "CNPJ", b1 =>
@@ -263,6 +622,50 @@ namespace PositivoCore.Data.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("EscolaId");
                         });
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Mensagem", b =>
+                {
+                    b.HasOne("PositivoCore.Domain.Entities.Mensagem", "MensagemVinculada")
+                        .WithMany("MensagemVinculadas")
+                        .HasForeignKey("IdMensagemVinculada")
+                        .OnDelete(DeleteBehavior.NoAction);
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.Periodo", b =>
+                {
+                    b.HasOne("PositivoCore.Domain.Entities.PeriodoLetivoTipo", "PeriodoLetivoTipo")
+                        .WithMany("Periodos")
+                        .HasForeignKey("IdPeriodoLetivoTipo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PositivoCore.Domain.Entities.PeriodoLetivoConfiguracao", b =>
+                {
+                    b.HasOne("PositivoCore.Domain.Entities.Escola", "Escola")
+                        .WithMany("PeriodoLetivoConfiguracoes")
+                        .HasForeignKey("IdEscola")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PositivoCore.Domain.Entities.NivelEnsino", "NivelEnsino")
+                        .WithMany("PeriodoLetivoConfiguracoes")
+                        .HasForeignKey("IdNivelEnsino")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PositivoCore.Domain.Entities.Periodo", "Periodo")
+                        .WithMany("PeriodoLetivoConfiguracoes")
+                        .HasForeignKey("IdPeriodo")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PositivoCore.Domain.Entities.PeriodoLetivoTipo", "PeriodoLetivoTipo")
+                        .WithMany("PeriodoLetivoConfiguracoes")
+                        .HasForeignKey("IdPeriodoLetivoTipo")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PositivoCore.Domain.Entities.Serie", b =>

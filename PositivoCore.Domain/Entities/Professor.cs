@@ -22,12 +22,12 @@ namespace PositivoCore.Domain.Entities
         public string Nome { get; private set; }
         public string CPF { get; private set; }
 
-        public void UpdateNome(string nome)
-        {
-            Nome = nome;
-        }
-
         public virtual ICollection<TurmaDisciplinaProfessor> TurmasDisciplinasProfessores { get; set; }
-        
+
+        public void UpdateFields(Professor fields)
+        {
+            Nome = fields.Nome;
+            CPF = fields.CPF;
+        }
     }
 }

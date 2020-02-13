@@ -19,8 +19,6 @@ namespace PositivoCore.Data.Mappings
             builder.Property(x => x.IdEscola)
                 .IsRequired();
 
-                
-
             builder.HasOne<Escola>(x => x.Escola)
                 .WithMany(s => s.Turmas)
                 .HasForeignKey(z => z.IdEscola);

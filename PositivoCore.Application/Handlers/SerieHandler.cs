@@ -30,7 +30,7 @@ namespace PositivoCore.Application.Handler
 
             var serie = new Serie(command.Nome, command.IdNivelEnsino);
 
-            await Task.Run(() => _repository.Insert(serie));
+            _repository.Insert(serie);
 
             return new CommandResult(true, "Serie inserida com sucesso.", _mapper.Map<SerieViewModel>(serie));
         }
@@ -41,7 +41,7 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var serie = await Task.Run(() => _repository.Find(command.Id));
+            var serie = await _repository.Find(command.Id);
 
             if (serie == null)
                 AddNotification("Serie", "Não foi possível encontrar o Nível de ensino vinculado a este id.");
@@ -59,7 +59,7 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var serie = await Task.Run(() => _repository.Find(command.Id));
+            var serie = await _repository.Find(command.Id);
 
             if (serie == null)
                 AddNotification("serie", "Não foi encontrado uma série vinculada a este id.");

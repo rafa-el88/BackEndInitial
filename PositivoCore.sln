@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PositivoCore.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PositivoCore.WebApi", "PositivoCore.WebApi\PositivoCore.WebApi.csproj", "{EA9F44FF-81F0-4E94-B639-B6ADB169F17D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositivoCore.Test", "PositivoCore.Test\PositivoCore.Test.csproj", "{B66136DA-6977-42AF-B9B1-D7DDCD0FB800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PositivoCore.Test", "PositivoCore.Test\PositivoCore.Test.csproj", "{B66136DA-6977-42AF-B9B1-D7DDCD0FB800}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8C6D67A2-E4CD-4AD8-8AA9-5A1A85C0C20B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

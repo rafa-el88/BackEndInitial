@@ -70,22 +70,18 @@ namespace PositivoCore.Data.Queries
             }
         }
         #endregion
-
         public DisciplinaQuery(IConfiguration configuration)
         {
             sqlConnection = new SqlConnection(HelperConnectionString.Get());
         }
-
         public async Task<IEnumerable<Disciplina>> GetAllDisciplinas()
         {
             return await sqlConnection.QueryAsync<Disciplina>(_queryObtemDisciplinas);
         }
-
         public async Task<Disciplina> GetDisciplinaById(Guid id)
         {
             return await sqlConnection.QueryFirstOrDefaultAsync<Disciplina>(_queryObtemPorId, new { Id = id });
         }
-
         public async Task<IEnumerable<Disciplina>> GetDisciplinaByNome(string nome)
         {
             return await sqlConnection.QueryAsync<Disciplina>(_queryObtemPorNome, new { Nome = "%" + nome + "%" });

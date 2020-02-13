@@ -24,6 +24,12 @@ namespace PositivoCore.Data.Queries
                         SELECT 
                             Id, 
                             Nome, 
+                            Email,
+                            Cpf,
+                            Matricula,
+                            Apelido,
+                            DataNascimento,
+                            Genero,
                             Ativo, 
                             DataCadastro, 
                             DataAtualizacao 
@@ -41,6 +47,12 @@ namespace PositivoCore.Data.Queries
                         SELECT 
                             Id, 
                             Nome, 
+                            Email,
+                            Cpf,
+                            Matricula,
+                            Apelido,
+                            DataNascimento,
+                            Genero,
                             Ativo, 
                             DataCadastro, 
                             DataAtualizacao 
@@ -60,6 +72,12 @@ namespace PositivoCore.Data.Queries
                         SELECT 
                             Id, 
                             Nome, 
+                            Email,
+                            Cpf,
+                            Matricula,
+                            Apelido,
+                            DataNascimento,
+                            Genero,
                             Ativo, 
                             DataCadastro, 
                             DataAtualizacao 

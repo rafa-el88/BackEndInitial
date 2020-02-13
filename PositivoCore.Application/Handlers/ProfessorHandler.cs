@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Flunt.Notifications;
@@ -34,9 +33,9 @@ namespace PositivoCore.Application.Handler
             if (Invalid)
                 return new CommandResult(false, "Ops...", Notifications);
 
-            var professor = new Professor(command.Nome, command.CPF);
+            var professor = _mapper.Map<Professor>(command);
 
-            await Task.Run(() => _repository.Insert(professor));
+            _repository.Insert(professor);
 
             return new CommandResult(true, "Professor criado com sucesso.", _mapper.Map<ProfessorViewModel>(professor));
         }
@@ -47,7 +46,7 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var professor = await Task.Run(() => _repository.Find(command.Id));
+            var professor = await _repository.Find(command.Id);
 
             if (professor == null)
                 AddNotification("Professor", "Não foi possível encontrar o professor vinculado a este id.");
@@ -65,7 +64,7 @@ namespace PositivoCore.Application.Handler
             if (command.Invalid)
                 return new CommandResult(false, "Ops...", command.Notifications);
 
-            var professor = await Task.Run(() => _repository.Find(command.Id));
+            var professor = await _repository.Find(command.Id);
 
             if (professor == null)
                 AddNotification("Professor", "Não foi encontrar o professor vinculado a este id.");
@@ -73,7 +72,7 @@ namespace PositivoCore.Application.Handler
             if (Invalid)
                 return new CommandResult(false, "Ops...", Notifications);
 
-            professor.UpdateNome(command.Nome);
+            professor.UpdateFields(_mapper.Map<Professor>(command));
 
             _repository.Update(professor);
 

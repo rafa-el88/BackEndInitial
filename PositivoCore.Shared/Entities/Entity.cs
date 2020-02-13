@@ -13,7 +13,7 @@ namespace PositivoCore.Shared.Entities
             Ativo = true;
         }
 
-        public Guid Id { get; protected set; }        
+        public Guid Id { get; protected set; }
         public DateTime DataCadastro { get; protected set; }
         public DateTime DataAtualizacao { get; protected set; }
         public bool Ativo { get; protected set; }
@@ -21,6 +21,6 @@ namespace PositivoCore.Shared.Entities
         public void AtualizaDataAtualizacao()
         {
             DataAtualizacao = DateTime.UtcNow;
-        }        
+        }
     }
 }

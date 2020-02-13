@@ -12,9 +12,37 @@ namespace PositivoCore.Data.Mappings
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Nome)
-                .HasColumnType("nvarchar(255)")
-                .HasMaxLength(255)
+                .HasColumnType("nvarchar(100)")
+                .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(c => c.Email)
+                .HasColumnType("nvarchar(200)")
+                .HasMaxLength(200)
+                .IsRequired(false);
+
+            builder.Property(c => c.Cpf)
+                .HasColumnType("nvarchar(20)")
+                .HasMaxLength(20)
+                .IsRequired(false);
+
+            builder.Property(c => c.Matricula)
+                .HasColumnType("nvarchar(20)")
+                .HasMaxLength(20)
+                .IsRequired(false);
+
+            builder.Property(c => c.Apelido)
+                .HasColumnType("nvarchar(20)")
+                .HasMaxLength(20)
+                .IsRequired(false);
+
+            builder.Property(c => c.DataNascimento)
+                .HasColumnType("DateTime")
+                .IsRequired(false);
+
+            builder.Property(c => c.Genero)
+                .HasColumnType("int")
+                .IsRequired(false);
 
             builder.Property(c => c.DataCadastro)
                 .HasColumnType("DateTime")

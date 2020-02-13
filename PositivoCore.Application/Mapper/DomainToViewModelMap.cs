@@ -10,13 +10,23 @@ namespace PositivoCore.Application.Mapper
     {
         public DomainToViewModelMap()
         {
+            CreateMap<Administrador, AdministradorViewModel>();
             CreateMap<Aluno, AlunoViewModel>();
+            CreateMap<Colecao, ColecaoViewModel>();
+            CreateMap<DestinatarioMensagem, DestinatarioMensagemViewModel>();
             CreateMap<Disciplina, DisciplinaViewModel>();
             CreateMap<Escola, EscolaViewModel>();
+            CreateMap<Mensagem, MensagemViewModel>();
             CreateMap<NivelEnsino, NivelEnsinoViewModel>();
+            CreateMap<Periodo, PeriodoViewModel>();
+            CreateMap<PeriodoLetivoConfiguracao, PeriodoLetivoConfiguracaoViewModel>();
+            CreateMap<PeriodoLetivoTipo, PeriodoLetivoTipoViewModel>();
             CreateMap<Professor, ProfessorViewModel>();
+            CreateMap<Responsavel, ResponsavelViewModel>();
             CreateMap<Serie, SerieViewModel>();
             CreateMap<Turma, TurmaViewModel>();
+            CreateMap<TurmaDisciplinaProfessor, TurmaDisciplinaProfessorViewModel>();
+            CreateMap<ConvidadosEvento, ConvidadosEventoViewModel>();
 
             /* Mapeamento para criação dos eventos no Handles com List. Ex: handlerCreateEscolas */
             CreateMap<CommandResult, EventsResult>();

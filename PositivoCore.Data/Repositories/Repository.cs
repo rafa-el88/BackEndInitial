@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PositivoCore.Application.Interface.Repository;
 using PositivoCore.Data.Context;
@@ -30,15 +31,15 @@ namespace PositivoCore.Data.Repositories
             _context.SaveChanges();
         }
 
-        public T Find(Guid id)
+        public async Task<T> Find(Guid id)
         {
-          return _DbSet.Find(id);
+            return await _DbSet.FindAsync(id);
         }
 
         public void Insert(T obj)
         {
-           _DbSet.Add(obj);
-           _context.SaveChanges();
+            _DbSet.Add(obj);
+            _context.SaveChanges();
         }
 
         public List<T> InsertList(List<T> obj)

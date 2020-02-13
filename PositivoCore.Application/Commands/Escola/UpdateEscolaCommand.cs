@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Flunt.Notifications;
 using Flunt.Validations;
+using PositivoCore.Domain.Entities;
+using PositivoCore.Domain.Enums;
 using PositivoCore.Shared.Commands;
 
 namespace PositivoCore.Application.Commands
@@ -14,16 +17,16 @@ namespace PositivoCore.Application.Commands
         }
 
         public UpdateEscolaCommand() { }
-
         public string Nome { get; set; }
+        public string CNPJ { get; set; }
+        public string RazaoSocial { get; set; }
+        public string INEP { get; set; }
+        public string INEPDescricao { get; set; }
+        public string InscricaoEstadual { get; set; }
+        public string CodSGE { get; set; }
+        public TipoEscola TipoEscola { get; set; }
         public Guid Id { get; set; }
-
-        public void Validate()
-        {
-            AddNotifications(new Contract()
-                .Requires()
-                .HasMinLen(Nome, 3, "Nome", "Escola deve conter pelo menos 3 caracteres")
-            );
-        }
+        public virtual List<Turma> Turmas { get; set; }
+        public void Validate() {}
     }
 }

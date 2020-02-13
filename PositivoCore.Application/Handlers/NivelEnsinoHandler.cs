@@ -30,7 +30,7 @@ namespace PositivoCore.Application.Handler
 
             var nivelEnsino = new NivelEnsino(command.Nome);
 
-            await Task.Run(() => _repository.Insert(nivelEnsino));
+            _repository.Insert(nivelEnsino);
 
             return new CommandResult(true, "Nível de ensino inserido com sucesso.", _mapper.Map<NivelEnsinoViewModel>(nivelEnsino));
         }
@@ -39,7 +39,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var nivelEnsino = await Task.Run(() => _repository.Find(command.Id));
+            var nivelEnsino = await _repository.Find(command.Id);
 
             if (nivelEnsino == null)
                 AddNotification("NivelEnsino", "Não foi possível encontrar o nível de ensino vinculado a este id.");
@@ -55,7 +55,7 @@ namespace PositivoCore.Application.Handler
         {
             command.Validate();
 
-            var nivelEnsino = await Task.Run(() => _repository.Find(command.Id));
+            var nivelEnsino = await _repository.Find(command.Id);
 
             if (nivelEnsino == null)
                 AddNotification("NivelEnsino", "Não foi encontrado Nível de Ensino vinculada a este id.");

@@ -85,7 +85,7 @@ namespace PositivoCore.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que Edita uma lista de aluno 
+        /// Método que edita uma lista de aluno 
         /// </summary>
         /// <param name="lst"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace PositivoCore.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que Edita uma lista de aluno 
+        /// Método que deleta uma lista de aluno 
         /// </summary>
         /// <param name="lst"></param>
         /// <returns></returns>
@@ -113,12 +113,13 @@ namespace PositivoCore.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que atualiza o nome do aluno 
+        /// Método que atualiza os dados do aluno 
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("")]
         [ProducesResponseType(typeof(UpdateAlunoCommand), 200)]
+        [ProducesResponseType(typeof(AlunoViewModel), 400)]
         public async Task<IActionResult> UpdateAluno([FromBody]UpdateAlunoCommand command)
         {
             var result = await _alunoService.UpdateAluno(command);

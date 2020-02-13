@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using PositivoCore.Application.Commands;
 using PositivoCore.Application.ViewModels;
+using PositivoCore.Domain.Enums;
 using PositivoCore.Test.Context;
 using System;
 using System.Net;
@@ -61,11 +62,11 @@ namespace PositivoCore.Test.Scenarios
         }
 
         [Theory]
-        [InlineData("Aluno")]
-        public async Task Aluno_CreateDelete_ReturnsOkResponse(string nome)
+        [InlineData("AlunoTeste", null, "06606053927", null, null, "2000-02-11T12:59:39.223Z", EGenero.Masculino)]
+        public async Task Aluno_CreateDelete_ReturnsOkResponse(string nome, string email, string cpf, string matricula, string apelido, DateTime dataNascimento, EGenero genero)
         {
             //Testa criar Aluno
-            CreateAlunoCommand cmd = new CreateAlunoCommand(nome);
+            CreateAlunoCommand cmd = new CreateAlunoCommand(nome, email, cpf, matricula, apelido, dataNascimento, genero);
             var response = await CreateAluno(cmd);
             response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -81,11 +82,11 @@ namespace PositivoCore.Test.Scenarios
         }
 
         [Theory]
-        [InlineData("Aluno")]
-        public async Task Aluno_CreateUpdateDelete_ReturnsOkResponse(string nome)
+        [InlineData("AlunoTeste", null, "06606053927", null, null, "2000-02-11T12:59:39.223Z", EGenero.Masculino)]
+        public async Task Aluno_CreateUpdateDelete_ReturnsOkResponse(string nome, string email, string cpf, string matricula, string apelido, DateTime dataNascimento, EGenero genero)
         {
             //Testa criar Aluno
-            CreateAlunoCommand cmd = new CreateAlunoCommand(nome);
+            CreateAlunoCommand cmd = new CreateAlunoCommand(nome, email, cpf, matricula, apelido, dataNascimento, genero);
             var response = await CreateAluno(cmd);
 
             response.EnsureSuccessStatusCode();
@@ -107,11 +108,11 @@ namespace PositivoCore.Test.Scenarios
         }
 
         [Theory]
-        [InlineData("Aluno")]
-        public async Task Aluno_CreateGetByNomeDelete_ReturnsOkResponse(string nome)
+        [InlineData("AlunoTeste", null, "06606053927", null, null, "2000-02-11T12:59:39.223Z", EGenero.Masculino)]
+        public async Task Aluno_CreateGetByNomeDelete_ReturnsOkResponse(string nome, string email, string cpf, string matricula, string apelido, DateTime dataNascimento, EGenero genero)
         {
             //Testa criar Aluno 
-            CreateAlunoCommand cmd = new CreateAlunoCommand(nome);
+            CreateAlunoCommand cmd = new CreateAlunoCommand(nome, email, cpf, matricula, apelido, dataNascimento, genero);
             var response = await CreateAluno(cmd);
             response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -131,11 +132,11 @@ namespace PositivoCore.Test.Scenarios
         }
 
         [Theory]
-        [InlineData("Aluno")]
-        public async Task Aluno_CreateGetByIdDelete_ReturnsOkResponse(string nome)
+        [InlineData("AlunoTeste", null, "06606053927", null, null, "2000-02-11T12:59:39.223Z", EGenero.Masculino)]
+        public async Task Aluno_CreateGetByIdDelete_ReturnsOkResponse(string nome, string email, string cpf, string matricula, string apelido, DateTime dataNascimento, EGenero genero)
         {
             //Testa criar Aluno
-            CreateAlunoCommand cmd = new CreateAlunoCommand(nome);
+            CreateAlunoCommand cmd = new CreateAlunoCommand(nome, email, cpf, matricula, apelido, dataNascimento, genero);
             var response = await CreateAluno(cmd);
             response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -165,11 +166,11 @@ namespace PositivoCore.Test.Scenarios
         }
 
         [Theory]
-        [InlineData("")]
-        public async Task Aluno_Create_ReturnsNOkResponse(string nome)
+        [InlineData("", null, "06606053927", null, null, "2000-02-11T12:59:39.223Z", EGenero.Masculino)]
+        public async Task Aluno_Create_ReturnsNOkResponse(string nome, string email, string cpf, string matricula, string apelido, DateTime dataNascimento, EGenero genero)
         {
             //Testa criar Aluno
-            CreateAlunoCommand cmd = new CreateAlunoCommand(nome);
+            CreateAlunoCommand cmd = new CreateAlunoCommand(nome, email, cpf, matricula, apelido, dataNascimento, genero);
             var response = await CreateAluno(cmd);
             response.StatusCode.Should().NotBe(HttpStatusCode.OK);
         }

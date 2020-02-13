@@ -1,7 +1,6 @@
 ﻿using Flunt.Notifications;
 using PositivoCore.Application.ViewModels;
 using PositivoCore.Shared.Commands;
-using System;
 using System.Collections.Generic;
 
 namespace PositivoCore.Application.Commands.Aluno
